@@ -1,0 +1,58 @@
+$include /etc/inputrc
+# set editing-mode vi
+# set show-mode-in-prompt on
+
+set enable-bracketed-paste on
+
+$if term=linux
+	set vi-ins-mode-string \1\e[?0c\2
+	set vi-cmd-mode-string \1\e[?8c\2
+$else
+	set vi-ins-mode-string \1\e[6 q\2
+	set vi-cmd-mode-string \1\e[2 q\2
+$endif
+
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+$if mode=vi
+set keymap vi-command
+# these are for vi-command mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+j: history-search-forward
+k: history-search-backward
+set keymap vi-insert
+# these are for vi-insert mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+$endif
+
+set show-all-if-ambiguous on
+
+# Color files by types
+# Note that this may cause completion text blink in some terminals (e.g. xterm).
+set colored-stats On
+# Append char to indicate type
+set visible-stats On
+# Mark symlinked directories
+set mark-symlinked-directories On
+# Color the common prefix
+set colored-completion-prefix On
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
+
+# Ctrl+Alt+l Appends | less
+"\e\C-l": "\C-e | less\C-m"
+
+# Ctrl+Alt+Y confirm any yes/no question
+"\e\C-y": "\C-ayes | \C-m"
+
+# Alt-S. Prefixes the line with sudo
+"\es": "\C-asudo \C-e"
+
+# Send commant to background and discart its output
+"\e\C-b": "\C-e > /dev/null 2>&1 &\C-m"
