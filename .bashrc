@@ -116,6 +116,9 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+
+  source /usr/share/bash-completion/completions/git
+  __git_complete config __git_main
 fi
 
 # Bind Alt+H for help command or man command
