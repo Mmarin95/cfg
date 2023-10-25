@@ -1,4 +1,3 @@
-
 ## Modified commands
 # alias diff='colordiff'              # requires colordiff package
 alias grep='grep --color=auto'
@@ -29,6 +28,11 @@ if (( UID != 0 )); then
     alias update='sudo pacman -Su'
     alias netctl='sudo netctl'
 fi
+
+# apt
+alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
+alias search='apt search'
 
 ## ls
 alias ls='ls -hF --color=auto'
