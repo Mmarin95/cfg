@@ -1,0 +1,24 @@
+---
+- name: Basic Setup Playbook
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Check if Git is installed
+      command: git --version
+      register: git_result
+      ignore_errors: true
+
+    - name: Check if Ansible is installed
+      command: ansible --version
+      register: ansible_result
+      ignore_errors: true
+
+    - name: Display Git version
+      debug:
+        msg: "Git is installed: {{ git_result.stdout }}"
+      when: git_result.rc == 0
+
+    - name: Display Ansible version
+      debug:
+        msg: "Ansible is installed: {{ ansible_result.stdout_lines[0] }}"
+      when: ansible_result.rc == 0
