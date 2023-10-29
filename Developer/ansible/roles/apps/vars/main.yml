@@ -1,7 +1,34 @@
 ---
-# List of applications to install
 apps:
-  - name: curl
-    category: utilities
+  - name: git
+    category: development_tools
+  - name: gh
+    category: development_tools
+  - name: tig
+    category: development_tools
+  - name: meld
+    category: development_tools
   - name: htop
-    category: system_monitoring
+    category: system_utilities
+  - name: tree
+    category: system_utilities
+  - name: timeshift
+    category: system_utilities
+  - name: synaptic
+    category: system_utilities
+  - name: peek
+    category: system_utilities
+  - name: gnome-tweaks
+    category: system_utilities
+  - name: fzf
+    category: system_utilities
+  - name: 'transmission-gtk'
+    category: networking
+  - name: gnome-boxes
+    category: virtualization
+  - name: podman
+    category: virtualization
+  - name: guake
+    category: terminal_utilities
+  - name: copyq
+    category: clipboard_management
