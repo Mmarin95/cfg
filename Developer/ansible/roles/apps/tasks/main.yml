@@ -1,17 +1,30 @@
 ---
-- name: Include Snap package variables
+- name: Include Apt package variables
   include_vars:
-    file: snaps.yml
-
-- name: Install Applications
+    file: apt.yml
+- name: Install Apt Applications
   apt:
     name: "{{ item.name }}"
     state: present
   loop: "{{ apps }}"
 
+- name: Include Snap package variables
+  include_vars:
+    file: snaps.yml
 - name: Install Snap Applications
   snap:
     name: "{{ item.name }}"
     classic: "{{ item.classic | default(omit) }}"
     state: present
   loop: "{{ snaps }}"
+
+# - name: Include url_package variables
+#   include_vars:
+#     file: url.yml
+# - name: Check, Download, and Install URL Packages
+#   shell: |
+#     if ! dpkg-query -l {{ item.name }} > /dev/null 2>&1; then
+#       wget -q -O /tmp/{{ item.name }}.deb {{ item.url }}
+#       sudo dpkg -i /tmp/{{ item.name }}.deb
+#     fi
+#   loop: "{{ url_packages }}"

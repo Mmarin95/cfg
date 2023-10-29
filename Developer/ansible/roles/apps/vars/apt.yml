@@ -10,10 +10,6 @@ apps:
     category: development_tools
   - name: htop
     category: system_utilities
-  - name: curl
-    category: system_utilities
-  - name: wget
-    category: system_utilities
   - name: tree
     category: system_utilities
   - name: timeshift
