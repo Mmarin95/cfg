@@ -1,10 +1,6 @@
 ---
-- name: Install Curl
+- name: Install Applications
   apt:
-    name: curl
+    name: "{{ item.name }}"
     state: present
-
-- name: Install Htop
-  apt:
-    name: htop
-    state: present
+  loop: "{{ apps }}"
