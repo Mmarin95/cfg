@@ -1,0 +1,7 @@
+---
+# List of applications to install
+apps:
+  - name: curl
+    category: utilities
+  - name: htop
+    category: system_monitoring
