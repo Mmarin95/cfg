@@ -120,10 +120,10 @@ if ! shopt -oq posix; then
         . /etc/bash_completion
     fi
 
-    if [ -f /usr/share/bash-completion/bash_completion/completions/git ]; then
-        . /usr/share/bash-completion/completions/git
-        __git_complete config __git_main
-    fi
+    # if [ -f /usr/share/bash-completion/bash_completion/completions/git ]; then
+    #     . /usr/share/bash-completion/completions/git
+    #     __git_complete config __git_main
+    # fi
 fi
 
 # Bind Alt+H for help command or man command
@@ -135,3 +135,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 alias config='/usr/bin/git --git-dir=/home/mm/.cfg/ --work-tree=/home/mm'
+
+. /usr/share/bash-completion/completions/git
+__git_complete config __git_main
