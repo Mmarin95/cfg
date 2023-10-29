@@ -1,0 +1,11 @@
+---
+snaps:
+  - name: emacs
+    classic: yes
+  - name: sublime-text
+    classic: yes
+  - name: bitwarden
+  - name: bw
+  - name: discord
+  - name: foliate
+  - name: gimp

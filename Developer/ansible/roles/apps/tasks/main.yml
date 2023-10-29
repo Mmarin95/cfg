@@ -1,6 +1,17 @@
 ---
+- name: Include Snap package variables
+  include_vars:
+    file: snaps.yml
+
 - name: Install Applications
   apt:
     name: "{{ item.name }}"
     state: present
   loop: "{{ apps }}"
+
+- name: Install Snap Applications
+  snap:
+    name: "{{ item.name }}"
+    classic: "{{ item.classic | default(omit) }}"
+    state: present
+  loop: "{{ snaps }}"
