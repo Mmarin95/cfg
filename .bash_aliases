@@ -29,10 +29,11 @@ if (( UID != 0 )); then
     alias netctl='sudo netctl'
 fi
 
-# apt
-alias update='sudo apt update'
-alias upgrade='sudo apt upgrade'
-alias search='apt search'
+# zypper
+alias zy='sudo zypper'
+alias refresh='sudo zypper refresh'
+alias update='sudo zypper update'
+alias search='sudo zypper search'
 
 ## ls
 alias ls='ls -hF --color=auto'

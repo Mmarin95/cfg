@@ -87,50 +87,6 @@ ipif() {
 	echo
 }
 
-install() {
-	# Function to get package details
-	pkg_preview() {
-		echo "$1" | xargs -I % apt-cache show %
-	}
-
-	export -f pkg_preview
-
-	# Get a list of packages and pipe it into fzf with a preview window
-	packages=$(apt-cache pkgnames | fzf --multi --preview 'pkg_preview {}')
-
-	# Install selected packages
-	if [ -n "$packages" ]; then
-		echo "You selected: $packages"
-		read -p "Do you want to install these packages? (y/N) " -n 1 -r
-		echo # (optional) move to a new line
-		if [[ $REPLY =~ ^[Yy]$ ]]; then
-			sudo apt install $packages
-		fi
-	fi
-}
-
-remove() {
-	# Function to get package details
-	pkg_preview() {
-		echo "$1" | xargs -I % apt-cache show %
-	}
-
-	export -f pkg_preview
-
-	# Get a list of installed packages and pipe it into fzf with a preview window
-	packages=$(dpkg --get-selections | awk '{print $1}' | fzf --multi --preview 'pkg_preview {}')
-
-	# Remove selected packages
-	if [ -n "$packages" ]; then
-		echo "You selected: $packages"
-		read -p "Do you want to remove these packages? (y/N) " -n 1 -r
-		echo # (optional) move to a new line
-		if [[ $REPLY =~ ^[Yy]$ ]]; then
-			sudo apt remove $packages
-		fi
-	fi
-}
-
 #dirsize - finds directory sizes and lists them for the current directory
 dirsize() {
 	du -shx * .[a-zA-Z0-9_]* 2>/dev/null |
