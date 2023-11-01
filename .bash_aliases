@@ -33,6 +33,7 @@ fi
 alias zy='sudo zypper'
 alias refresh='sudo zypper refresh'
 alias update='sudo zypper update'
+alias dupgrade='sudo zypper dup'
 alias search='sudo zypper search'
 
 ## ls
