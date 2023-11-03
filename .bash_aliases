@@ -63,3 +63,8 @@ alias :q=' exit'
 alias :Q=' exit'
 alias :x=' exit'
 alias cd..='cd ..'
+
+## Docker
+alias dstart='sudo systemctl start docker'
+alias dstop='sudo systemctl stop docker'
+alias drestart='sudo systemctl restart docker'
