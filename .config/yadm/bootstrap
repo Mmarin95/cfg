@@ -1,0 +1,107 @@
+#!/bin/sh
+
+# Bootstrap script for yadm
+# https://yadm.io/docs/bootstrap
+
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+install_vscode() {
+    echo "Checking VS Code installation..."
+    if ! command_exists code; then
+        echo "Installing VS Code..."
+        rpm --import https://packages.microsoft.com/keys/microsoft.asc
+        zypper addrepo https://packages.microsoft.com/yumrepos/vscode vscode
+        zypper refresh
+        zypper install code
+        echo "VS Code installed successfully."
+    else
+        echo "VS Code is already installed."
+    fi
+}
+
+install_gh_cli() {
+    echo "Checking GitHub CLI installation..."
+    if ! command_exists gh; then
+        echo "Installing GitHub CLI..."
+        zypper install gh
+        gh auth status || gh auth login
+        echo "GitHub CLI installed and authenticated."
+    else
+        echo "GitHub CLI is already installed."
+    fi
+}
+
+install_docker() {
+    echo "Checking Docker installation..."
+    if ! command_exists docker; then
+        echo "Installing Docker..."
+        zypper install docker docker-compose docker-compose-switch
+        sudo usermod -aG docker $USER
+        sudo systemctl start docker
+        echo "Docker installed successfully."
+    else
+        echo "Docker is already installed."
+    fi
+}
+
+configure_gnome_keybindings() {
+    echo "Configuring GNOME keybindings..."
+    if command_exists dconf; then
+        echo "Setting custom keybinding: <Super>+Return to open gnome-terminal"
+        # Set custom keybinding: <Super>+Return to open a terminal
+        dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Super>Return'"
+        dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'gnome-terminal'"
+        dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Terminal'"
+
+        # Ensure the custom keybinding is enabled
+        dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+
+        echo "GNOME keybindings configured successfully."
+    else
+        echo "dconf is not installed, skipping GNOME keybindings configuration."
+    fi
+}
+
+install_gnome_extensions() {
+    echo "Installing GNOME Extensions..."
+    if command_exists gnome-extensions; then
+        echo "Checking Caffeine extension..."
+        if ! gnome-extensions list | grep -q "caffeine@patapon.info"; then
+            echo "Installing Caffeine extension..."
+            gnome-extensions install --force caffeine@patapon.info
+            gnome-extensions enable caffeine@patapon.info
+            echo "Caffeine extension installed successfully."
+        else
+            echo "Caffeine extension is already installed."
+        fi
+        echo "GNOME Extensions installed successfully."
+    else
+        echo "gnome-extensions is not installed, skipping GNOME Extensions installation."
+    fi
+}
+
+update_system() {
+    echo "Updating system..."
+    sudo zypper refresh
+    sudo zypper update
+}
+
+install_basic_packages() {
+    echo "Installing basic packages..."
+    sudo zypper install -y \
+        htop \
+        tree
+
+    echo "Basic packages installed successfully."
+}
+
+update_system
+install_basic_packages
+install_vscode
+install_gh_cli
+install_docker
+configure_gnome_keybindings
+install_gnome_extensions
