@@ -31,6 +31,7 @@ fi
 
 # zypper
 alias zy='sudo zypper'
+alias install='sudo zypper install'
 alias refresh='sudo zypper refresh'
 alias update='sudo zypper update'
 alias dupgrade='sudo zypper dup'
