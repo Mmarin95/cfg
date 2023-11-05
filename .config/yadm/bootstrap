@@ -83,6 +83,14 @@ install_gnome_extensions() {
     fi
 }
 
+set_adwaita_dark_theme(){
+    # TODO: This can be done with dconf
+    echo "Setting Adwaita Dark theme..."
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+    echo "Adwaita Dark theme set successfully."
+}
+
 update_system() {
     echo "Updating system..."
     sudo zypper refresh
@@ -105,3 +113,4 @@ install_gh_cli
 install_docker
 configure_gnome_keybindings
 install_gnome_extensions
+set_adwaita_dark_theme
