@@ -12,10 +12,10 @@ install_vscode() {
     echo "Checking VS Code installation..."
     if ! command_exists code; then
         echo "Installing VS Code..."
-        rpm --import https://packages.microsoft.com/keys/microsoft.asc
-        zypper addrepo https://packages.microsoft.com/yumrepos/vscode vscode
-        zypper refresh
-        zypper install code
+        sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+        sudo zypper addrepo https://packages.microsoft.com/yumrepos/vscode vscode
+        sudo zypper refresh
+        sudo zypper install code
         echo "VS Code installed successfully."
     else
         echo "VS Code is already installed."
@@ -26,7 +26,7 @@ install_gh_cli() {
     echo "Checking GitHub CLI installation..."
     if ! command_exists gh; then
         echo "Installing GitHub CLI..."
-        zypper install gh
+        sudo zypper install gh
         gh auth status || gh auth login
         echo "GitHub CLI installed and authenticated."
     else
@@ -110,7 +110,7 @@ update_system
 install_basic_packages
 install_vscode
 install_gh_cli
-install_docker
-configure_gnome_keybindings
-install_gnome_extensions
-set_adwaita_dark_theme
+# install_docker
+# configure_gnome_keybindings
+# install_gnome_extensions
+# set_adwaita_dark_theme

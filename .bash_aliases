@@ -25,7 +25,6 @@ if (( UID != 0 )); then
     alias root='sudo -i'
     alias reboot='sudo systemctl reboot'
     alias poweroff='sudo systemctl poweroff'
-    alias update='sudo pacman -Su'
     alias netctl='sudo netctl'
 fi
 
