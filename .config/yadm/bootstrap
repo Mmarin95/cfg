@@ -101,7 +101,8 @@ install_basic_packages() {
     echo "Installing basic packages..."
     sudo zypper install -y \
         htop \
-        tree
+        tree \
+        tig
 
     echo "Basic packages installed successfully."
 }
