@@ -99,6 +99,7 @@ update_system() {
 
 install_basic_packages() {
     echo "Installing basic packages..."
+    sudo zypper install -t pattern devel_basis
     sudo zypper install -y \
         htop \
         tree \
