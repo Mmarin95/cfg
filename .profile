@@ -30,3 +30,4 @@ export EDITOR=nano
 export VISUAL=nano
 export FCEDIT=nano
 export PAGER=less
+. "$HOME/.cargo/env"
