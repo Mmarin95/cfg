@@ -26,6 +26,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "/usr/local/go/bin" ] ; then
+    PATH=$PATH:/usr/local/go/bin
+fi
+
 export EDITOR=nano
 export VISUAL=nano
 export FCEDIT=nano
